@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.question_pool.dao.TestMapper">
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Test">
+    <constructor>
+      <idArg column="tst_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tst_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tst_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="tst_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tst_dif" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="tst_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tst_score" javaType="java.lang.Float" jdbcType="REAL" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.question_pool.entity.Test">
+    <constructor>
+      <idArg column="tst_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tst_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tst_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="tst_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tst_dif" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="tst_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tst_score" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="tst_detail" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    tst_no, tst_name, tst_time, tst_type, tst_dif, tst_num, tst_score
+  </sql>
+  <sql id="Blob_Column_List">
+    tst_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from test
+    where tst_no = #{tstNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from test
+    where tst_no = #{tstNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Test">
+    insert into test (tst_no, tst_name, tst_time, 
+      tst_type, tst_dif, tst_num, 
+      tst_score, tst_detail)
+    values (#{tstNo,jdbcType=INTEGER}, #{tstName,jdbcType=VARCHAR}, #{tstTime,jdbcType=TIMESTAMP}, 
+      #{tstType,jdbcType=VARCHAR}, #{tstDif,jdbcType=REAL}, #{tstNum,jdbcType=INTEGER}, 
+      #{tstScore,jdbcType=REAL}, #{tstDetail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Test">
+    insert into test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tstNo != null">
+        tst_no,
+      </if>
+      <if test="tstName != null">
+        tst_name,
+      </if>
+      <if test="tstTime != null">
+        tst_time,
+      </if>
+      <if test="tstType != null">
+        tst_type,
+      </if>
+      <if test="tstDif != null">
+        tst_dif,
+      </if>
+      <if test="tstNum != null">
+        tst_num,
+      </if>
+      <if test="tstScore != null">
+        tst_score,
+      </if>
+      <if test="tstDetail != null">
+        tst_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tstNo != null">
+        #{tstNo,jdbcType=INTEGER},
+      </if>
+      <if test="tstName != null">
+        #{tstName,jdbcType=VARCHAR},
+      </if>
+      <if test="tstTime != null">
+        #{tstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tstType != null">
+        #{tstType,jdbcType=VARCHAR},
+      </if>
+      <if test="tstDif != null">
+        #{tstDif,jdbcType=REAL},
+      </if>
+      <if test="tstNum != null">
+        #{tstNum,jdbcType=INTEGER},
+      </if>
+      <if test="tstScore != null">
+        #{tstScore,jdbcType=REAL},
+      </if>
+      <if test="tstDetail != null">
+        #{tstDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Test">
+    update test
+    <set>
+      <if test="tstName != null">
+        tst_name = #{tstName,jdbcType=VARCHAR},
+      </if>
+      <if test="tstTime != null">
+        tst_time = #{tstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tstType != null">
+        tst_type = #{tstType,jdbcType=VARCHAR},
+      </if>
+      <if test="tstDif != null">
+        tst_dif = #{tstDif,jdbcType=REAL},
+      </if>
+      <if test="tstNum != null">
+        tst_num = #{tstNum,jdbcType=INTEGER},
+      </if>
+      <if test="tstScore != null">
+        tst_score = #{tstScore,jdbcType=REAL},
+      </if>
+      <if test="tstDetail != null">
+        tst_detail = #{tstDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where tst_no = #{tstNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.question_pool.entity.Test">
+    update test
+    set tst_name = #{tstName,jdbcType=VARCHAR},
+      tst_time = #{tstTime,jdbcType=TIMESTAMP},
+      tst_type = #{tstType,jdbcType=VARCHAR},
+      tst_dif = #{tstDif,jdbcType=REAL},
+      tst_num = #{tstNum,jdbcType=INTEGER},
+      tst_score = #{tstScore,jdbcType=REAL},
+      tst_detail = #{tstDetail,jdbcType=LONGVARCHAR}
+    where tst_no = #{tstNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Test">
+    update test
+    set tst_name = #{tstName,jdbcType=VARCHAR},
+      tst_time = #{tstTime,jdbcType=TIMESTAMP},
+      tst_type = #{tstType,jdbcType=VARCHAR},
+      tst_dif = #{tstDif,jdbcType=REAL},
+      tst_num = #{tstNum,jdbcType=INTEGER},
+      tst_score = #{tstScore,jdbcType=REAL}
+    where tst_no = #{tstNo,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Test">
+    <constructor>
+      <idArg column="tst_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tst_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tst_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="tst_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tst_dif" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="tst_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tst_score" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="tst_detail" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    tst_no, tst_name, tst_time, tst_type, tst_dif, tst_num, tst_score, tst_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test
+    where tst_no = #{tstNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from test
+    where tst_no = #{tstNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Test">
+    insert into test (tst_no, tst_name, tst_time, 
+      tst_type, tst_dif, tst_num, 
+      tst_score, tst_detail)
+    values (#{tstNo,jdbcType=INTEGER}, #{tstName,jdbcType=VARCHAR}, #{tstTime,jdbcType=TIMESTAMP}, 
+      #{tstType,jdbcType=VARCHAR}, #{tstDif,jdbcType=REAL}, #{tstNum,jdbcType=INTEGER}, 
+      #{tstScore,jdbcType=REAL}, #{tstDetail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Test">
+    insert into test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tstNo != null">
+        tst_no,
+      </if>
+      <if test="tstName != null">
+        tst_name,
+      </if>
+      <if test="tstTime != null">
+        tst_time,
+      </if>
+      <if test="tstType != null">
+        tst_type,
+      </if>
+      <if test="tstDif != null">
+        tst_dif,
+      </if>
+      <if test="tstNum != null">
+        tst_num,
+      </if>
+      <if test="tstScore != null">
+        tst_score,
+      </if>
+      <if test="tstDetail != null">
+        tst_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tstNo != null">
+        #{tstNo,jdbcType=INTEGER},
+      </if>
+      <if test="tstName != null">
+        #{tstName,jdbcType=VARCHAR},
+      </if>
+      <if test="tstTime != null">
+        #{tstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tstType != null">
+        #{tstType,jdbcType=VARCHAR},
+      </if>
+      <if test="tstDif != null">
+        #{tstDif,jdbcType=REAL},
+      </if>
+      <if test="tstNum != null">
+        #{tstNum,jdbcType=INTEGER},
+      </if>
+      <if test="tstScore != null">
+        #{tstScore,jdbcType=REAL},
+      </if>
+      <if test="tstDetail != null">
+        #{tstDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Test">
+    update test
+    <set>
+      <if test="tstName != null">
+        tst_name = #{tstName,jdbcType=VARCHAR},
+      </if>
+      <if test="tstTime != null">
+        tst_time = #{tstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tstType != null">
+        tst_type = #{tstType,jdbcType=VARCHAR},
+      </if>
+      <if test="tstDif != null">
+        tst_dif = #{tstDif,jdbcType=REAL},
+      </if>
+      <if test="tstNum != null">
+        tst_num = #{tstNum,jdbcType=INTEGER},
+      </if>
+      <if test="tstScore != null">
+        tst_score = #{tstScore,jdbcType=REAL},
+      </if>
+      <if test="tstDetail != null">
+        tst_detail = #{tstDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tst_no = #{tstNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Test">
+    update test
+    set tst_name = #{tstName,jdbcType=VARCHAR},
+      tst_time = #{tstTime,jdbcType=TIMESTAMP},
+      tst_type = #{tstType,jdbcType=VARCHAR},
+      tst_dif = #{tstDif,jdbcType=REAL},
+      tst_num = #{tstNum,jdbcType=INTEGER},
+      tst_score = #{tstScore,jdbcType=REAL},
+      tst_detail = #{tstDetail,jdbcType=VARCHAR}
+    where tst_no = #{tstNo,jdbcType=INTEGER}
+  </update>
+</mapper>

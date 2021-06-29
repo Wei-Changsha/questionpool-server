@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.question_pool.dao.TeacherMapper">
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Teacher">
+    <constructor>
+      <idArg column="tea_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tea_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tea_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tea_discipline" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tea_mail" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    tea_no, tea_pwd, tea_name, tea_discipline, tea_mail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where tea_no = #{teaNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher
+    where tea_no = #{teaNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Teacher">
+    insert into teacher (tea_no, tea_pwd, tea_name, 
+      tea_discipline, tea_mail)
+    values (#{teaNo,jdbcType=INTEGER}, #{teaPwd,jdbcType=VARCHAR}, #{teaName,jdbcType=VARCHAR}, 
+      #{teaDiscipline,jdbcType=VARCHAR}, #{teaMail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Teacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teaNo != null">
+        tea_no,
+      </if>
+      <if test="teaPwd != null">
+        tea_pwd,
+      </if>
+      <if test="teaName != null">
+        tea_name,
+      </if>
+      <if test="teaDiscipline != null">
+        tea_discipline,
+      </if>
+      <if test="teaMail != null">
+        tea_mail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teaNo != null">
+        #{teaNo,jdbcType=INTEGER},
+      </if>
+      <if test="teaPwd != null">
+        #{teaPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="teaName != null">
+        #{teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="teaDiscipline != null">
+        #{teaDiscipline,jdbcType=VARCHAR},
+      </if>
+      <if test="teaMail != null">
+        #{teaMail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Teacher">
+    update teacher
+    <set>
+      <if test="teaPwd != null">
+        tea_pwd = #{teaPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="teaName != null">
+        tea_name = #{teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="teaDiscipline != null">
+        tea_discipline = #{teaDiscipline,jdbcType=VARCHAR},
+      </if>
+      <if test="teaMail != null">
+        tea_mail = #{teaMail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tea_no = #{teaNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Teacher">
+    update teacher
+    set tea_pwd = #{teaPwd,jdbcType=VARCHAR},
+      tea_name = #{teaName,jdbcType=VARCHAR},
+      tea_discipline = #{teaDiscipline,jdbcType=VARCHAR},
+      tea_mail = #{teaMail,jdbcType=VARCHAR}
+    where tea_no = #{teaNo,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Teacher">
+    <constructor>
+      <idArg column="tea_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tea_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tea_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tea_discipline" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tea_mail" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    tea_no, tea_pwd, tea_name, tea_discipline, tea_mail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where tea_no = #{teaNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher
+    where tea_no = #{teaNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Teacher">
+    insert into teacher (tea_no, tea_pwd, tea_name, 
+      tea_discipline, tea_mail)
+    values (#{teaNo,jdbcType=INTEGER}, #{teaPwd,jdbcType=VARCHAR}, #{teaName,jdbcType=VARCHAR}, 
+      #{teaDiscipline,jdbcType=VARCHAR}, #{teaMail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Teacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teaNo != null">
+        tea_no,
+      </if>
+      <if test="teaPwd != null">
+        tea_pwd,
+      </if>
+      <if test="teaName != null">
+        tea_name,
+      </if>
+      <if test="teaDiscipline != null">
+        tea_discipline,
+      </if>
+      <if test="teaMail != null">
+        tea_mail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teaNo != null">
+        #{teaNo,jdbcType=INTEGER},
+      </if>
+      <if test="teaPwd != null">
+        #{teaPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="teaName != null">
+        #{teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="teaDiscipline != null">
+        #{teaDiscipline,jdbcType=VARCHAR},
+      </if>
+      <if test="teaMail != null">
+        #{teaMail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Teacher">
+    update teacher
+    <set>
+      <if test="teaPwd != null">
+        tea_pwd = #{teaPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="teaName != null">
+        tea_name = #{teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="teaDiscipline != null">
+        tea_discipline = #{teaDiscipline,jdbcType=VARCHAR},
+      </if>
+      <if test="teaMail != null">
+        tea_mail = #{teaMail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tea_no = #{teaNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Teacher">
+    update teacher
+    set tea_pwd = #{teaPwd,jdbcType=VARCHAR},
+      tea_name = #{teaName,jdbcType=VARCHAR},
+      tea_discipline = #{teaDiscipline,jdbcType=VARCHAR},
+      tea_mail = #{teaMail,jdbcType=VARCHAR}
+    where tea_no = #{teaNo,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.question_pool.dao.AnswerMapper">
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Answer">
+    <constructor>
+      <idArg column="ans_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.question_pool.entity.Answer">
+    <constructor>
+      <idArg column="ans_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ans_detail" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ans_no, pro_no
+  </sql>
+  <sql id="Blob_Column_List">
+    ans_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from answer
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from answer
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Answer">
+    insert into answer (ans_no, pro_no, ans_detail
+      )
+    values (#{ansNo,jdbcType=INTEGER}, #{proNo,jdbcType=VARCHAR}, #{ansDetail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Answer">
+    insert into answer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ansNo != null">
+        ans_no,
+      </if>
+      <if test="proNo != null">
+        pro_no,
+      </if>
+      <if test="ansDetail != null">
+        ans_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ansNo != null">
+        #{ansNo,jdbcType=INTEGER},
+      </if>
+      <if test="proNo != null">
+        #{proNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ansDetail != null">
+        #{ansDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Answer">
+    update answer
+    <set>
+      <if test="proNo != null">
+        pro_no = #{proNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ansDetail != null">
+        ans_detail = #{ansDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.question_pool.entity.Answer">
+    update answer
+    set pro_no = #{proNo,jdbcType=VARCHAR},
+      ans_detail = #{ansDetail,jdbcType=LONGVARCHAR}
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Answer">
+    update answer
+    set pro_no = #{proNo,jdbcType=VARCHAR}
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Answer">
+    <constructor>
+      <idArg column="ans_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.question_pool.entity.Answer">
+    <constructor>
+      <idArg column="ans_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ans_detail" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ans_no, pro_no
+  </sql>
+  <sql id="Blob_Column_List">
+    ans_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from answer
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from answer
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Answer">
+    insert into answer (ans_no, pro_no, ans_detail
+      )
+    values (#{ansNo,jdbcType=INTEGER}, #{proNo,jdbcType=VARCHAR}, #{ansDetail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Answer">
+    insert into answer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ansNo != null">
+        ans_no,
+      </if>
+      <if test="proNo != null">
+        pro_no,
+      </if>
+      <if test="ansDetail != null">
+        ans_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ansNo != null">
+        #{ansNo,jdbcType=INTEGER},
+      </if>
+      <if test="proNo != null">
+        #{proNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ansDetail != null">
+        #{ansDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Answer">
+    update answer
+    <set>
+      <if test="proNo != null">
+        pro_no = #{proNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ansDetail != null">
+        ans_detail = #{ansDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.question_pool.entity.Answer">
+    update answer
+    set pro_no = #{proNo,jdbcType=VARCHAR},
+      ans_detail = #{ansDetail,jdbcType=LONGVARCHAR}
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Answer">
+    update answer
+    set pro_no = #{proNo,jdbcType=VARCHAR}
+    where ans_no = #{ansNo,jdbcType=INTEGER}
+  </update>
+</mapper>

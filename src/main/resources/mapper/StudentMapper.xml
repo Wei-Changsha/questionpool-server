@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.question_pool.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Student">
+    <constructor>
+      <idArg column="stu_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="stu_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="stu_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="stu_discipline" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="stu_grade" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    stu_no, stu_name, stu_pwd, stu_discipline, stu_grade
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from student
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Student">
+    insert into student (stu_no, stu_name, stu_pwd, 
+      stu_discipline, stu_grade)
+    values (#{stuNo,jdbcType=INTEGER}, #{stuName,jdbcType=VARCHAR}, #{stuPwd,jdbcType=VARCHAR}, 
+      #{stuDiscipline,jdbcType=VARCHAR}, #{stuGrade,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Student">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stuNo != null">
+        stu_no,
+      </if>
+      <if test="stuName != null">
+        stu_name,
+      </if>
+      <if test="stuPwd != null">
+        stu_pwd,
+      </if>
+      <if test="stuDiscipline != null">
+        stu_discipline,
+      </if>
+      <if test="stuGrade != null">
+        stu_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stuNo != null">
+        #{stuNo,jdbcType=INTEGER},
+      </if>
+      <if test="stuName != null">
+        #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPwd != null">
+        #{stuPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="stuDiscipline != null">
+        #{stuDiscipline,jdbcType=VARCHAR},
+      </if>
+      <if test="stuGrade != null">
+        #{stuGrade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Student">
+    update student
+    <set>
+      <if test="stuName != null">
+        stu_name = #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPwd != null">
+        stu_pwd = #{stuPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="stuDiscipline != null">
+        stu_discipline = #{stuDiscipline,jdbcType=VARCHAR},
+      </if>
+      <if test="stuGrade != null">
+        stu_grade = #{stuGrade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Student">
+    update student
+    set stu_name = #{stuName,jdbcType=VARCHAR},
+      stu_pwd = #{stuPwd,jdbcType=VARCHAR},
+      stu_discipline = #{stuDiscipline,jdbcType=VARCHAR},
+      stu_grade = #{stuGrade,jdbcType=VARCHAR}
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Student">
+    <constructor>
+      <idArg column="stu_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="stu_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="stu_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="stu_discipline" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="stu_grade" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    stu_no, stu_name, stu_pwd, stu_discipline, stu_grade
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from student
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Student">
+    insert into student (stu_no, stu_name, stu_pwd, 
+      stu_discipline, stu_grade)
+    values (#{stuNo,jdbcType=INTEGER}, #{stuName,jdbcType=VARCHAR}, #{stuPwd,jdbcType=VARCHAR}, 
+      #{stuDiscipline,jdbcType=VARCHAR}, #{stuGrade,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Student">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stuNo != null">
+        stu_no,
+      </if>
+      <if test="stuName != null">
+        stu_name,
+      </if>
+      <if test="stuPwd != null">
+        stu_pwd,
+      </if>
+      <if test="stuDiscipline != null">
+        stu_discipline,
+      </if>
+      <if test="stuGrade != null">
+        stu_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stuNo != null">
+        #{stuNo,jdbcType=INTEGER},
+      </if>
+      <if test="stuName != null">
+        #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPwd != null">
+        #{stuPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="stuDiscipline != null">
+        #{stuDiscipline,jdbcType=VARCHAR},
+      </if>
+      <if test="stuGrade != null">
+        #{stuGrade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Student">
+    update student
+    <set>
+      <if test="stuName != null">
+        stu_name = #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPwd != null">
+        stu_pwd = #{stuPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="stuDiscipline != null">
+        stu_discipline = #{stuDiscipline,jdbcType=VARCHAR},
+      </if>
+      <if test="stuGrade != null">
+        stu_grade = #{stuGrade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Student">
+    update student
+    set stu_name = #{stuName,jdbcType=VARCHAR},
+      stu_pwd = #{stuPwd,jdbcType=VARCHAR},
+      stu_discipline = #{stuDiscipline,jdbcType=VARCHAR},
+      stu_grade = #{stuGrade,jdbcType=VARCHAR}
+    where stu_no = #{stuNo,jdbcType=INTEGER}
+  </update>
+</mapper>

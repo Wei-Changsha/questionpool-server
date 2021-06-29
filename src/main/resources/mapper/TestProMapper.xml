@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.question_pool.dao.TestProMapper">
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.TestPro">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tst_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tst_no, pro_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test_pro
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByTstPro" resultType="com.example.question_pool.entity.TestPro"></select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from test_pro
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.TestPro">
+    insert into test_pro (id, tst_no, pro_no
+      )
+    values (#{id,jdbcType=INTEGER}, #{tstNo,jdbcType=INTEGER}, #{proNo,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.TestPro">
+    insert into test_pro
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tstNo != null">
+        tst_no,
+      </if>
+      <if test="proNo != null">
+        pro_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tstNo != null">
+        #{tstNo,jdbcType=INTEGER},
+      </if>
+      <if test="proNo != null">
+        #{proNo,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.TestPro">
+    update test_pro
+    <set>
+      <if test="tstNo != null">
+        tst_no = #{tstNo,jdbcType=INTEGER},
+      </if>
+      <if test="proNo != null">
+        pro_no = #{proNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.TestPro">
+    update test_pro
+    set tst_no = #{tstNo,jdbcType=INTEGER},
+      pro_no = #{proNo,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.question_pool.dao.ManagerMapper">
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Manager">
+    <constructor>
+      <idArg column="mana_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="mana_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mana_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    mana_no, mana_name, mana_pwd
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manager
+    where mana_no = #{manaNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manager
+    where mana_no = #{manaNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Manager">
+    insert into manager (mana_no, mana_name, mana_pwd
+      )
+    values (#{manaNo,jdbcType=INTEGER}, #{manaName,jdbcType=VARCHAR}, #{manaPwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Manager">
+    insert into manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="manaNo != null">
+        mana_no,
+      </if>
+      <if test="manaName != null">
+        mana_name,
+      </if>
+      <if test="manaPwd != null">
+        mana_pwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="manaNo != null">
+        #{manaNo,jdbcType=INTEGER},
+      </if>
+      <if test="manaName != null">
+        #{manaName,jdbcType=VARCHAR},
+      </if>
+      <if test="manaPwd != null">
+        #{manaPwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Manager">
+    update manager
+    <set>
+      <if test="manaName != null">
+        mana_name = #{manaName,jdbcType=VARCHAR},
+      </if>
+      <if test="manaPwd != null">
+        mana_pwd = #{manaPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mana_no = #{manaNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Manager">
+    update manager
+    set mana_name = #{manaName,jdbcType=VARCHAR},
+      mana_pwd = #{manaPwd,jdbcType=VARCHAR}
+    where mana_no = #{manaNo,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Manager">
+    <constructor>
+      <idArg column="mana_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="mana_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mana_pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    mana_no, mana_name, mana_pwd
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manager
+    where mana_no = #{manaNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manager
+    where mana_no = #{manaNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Manager">
+    insert into manager (mana_no, mana_name, mana_pwd
+      )
+    values (#{manaNo,jdbcType=INTEGER}, #{manaName,jdbcType=VARCHAR}, #{manaPwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Manager">
+    insert into manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="manaNo != null">
+        mana_no,
+      </if>
+      <if test="manaName != null">
+        mana_name,
+      </if>
+      <if test="manaPwd != null">
+        mana_pwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="manaNo != null">
+        #{manaNo,jdbcType=INTEGER},
+      </if>
+      <if test="manaName != null">
+        #{manaName,jdbcType=VARCHAR},
+      </if>
+      <if test="manaPwd != null">
+        #{manaPwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Manager">
+    update manager
+    <set>
+      <if test="manaName != null">
+        mana_name = #{manaName,jdbcType=VARCHAR},
+      </if>
+      <if test="manaPwd != null">
+        mana_pwd = #{manaPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mana_no = #{manaNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Manager">
+    update manager
+    set mana_name = #{manaName,jdbcType=VARCHAR},
+      mana_pwd = #{manaPwd,jdbcType=VARCHAR}
+    where mana_no = #{manaNo,jdbcType=INTEGER}
+  </update>
+</mapper>

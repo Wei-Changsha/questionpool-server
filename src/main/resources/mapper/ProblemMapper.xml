@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.question_pool.dao.ProblemMapper">
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Problem">
+    <constructor>
+      <idArg column="pro_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_ansno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_keyw" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_dif" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="pro_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_mpoint" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.question_pool.entity.Problem">
+    <constructor>
+      <idArg column="pro_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_ansno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_keyw" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_dif" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="pro_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_mpoint" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_detail" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pro_no, pro_ansno, pro_keyw, pro_dif, pro_type, cha_no, cha_title, cha_mpoint
+  </sql>
+  <sql id="Blob_Column_List">
+    pro_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from problem
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from problem
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Problem">
+    insert into problem (pro_no, pro_ansno, pro_keyw, 
+      pro_dif, pro_type, cha_no, 
+      cha_title, cha_mpoint, pro_detail
+      )
+    values (#{proNo,jdbcType=INTEGER}, #{proAnsno,jdbcType=VARCHAR}, #{proKeyw,jdbcType=VARCHAR}, 
+      #{proDif,jdbcType=REAL}, #{proType,jdbcType=VARCHAR}, #{chaNo,jdbcType=VARCHAR}, 
+      #{chaTitle,jdbcType=VARCHAR}, #{chaMpoint,jdbcType=VARCHAR}, #{proDetail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Problem">
+    insert into problem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="proNo != null">
+        pro_no,
+      </if>
+      <if test="proAnsno != null">
+        pro_ansno,
+      </if>
+      <if test="proKeyw != null">
+        pro_keyw,
+      </if>
+      <if test="proDif != null">
+        pro_dif,
+      </if>
+      <if test="proType != null">
+        pro_type,
+      </if>
+      <if test="chaNo != null">
+        cha_no,
+      </if>
+      <if test="chaTitle != null">
+        cha_title,
+      </if>
+      <if test="chaMpoint != null">
+        cha_mpoint,
+      </if>
+      <if test="proDetail != null">
+        pro_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="proNo != null">
+        #{proNo,jdbcType=INTEGER},
+      </if>
+      <if test="proAnsno != null">
+        #{proAnsno,jdbcType=VARCHAR},
+      </if>
+      <if test="proKeyw != null">
+        #{proKeyw,jdbcType=VARCHAR},
+      </if>
+      <if test="proDif != null">
+        #{proDif,jdbcType=REAL},
+      </if>
+      <if test="proType != null">
+        #{proType,jdbcType=VARCHAR},
+      </if>
+      <if test="chaNo != null">
+        #{chaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="chaTitle != null">
+        #{chaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="chaMpoint != null">
+        #{chaMpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="proDetail != null">
+        #{proDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Problem">
+    update problem
+    <set>
+      <if test="proAnsno != null">
+        pro_ansno = #{proAnsno,jdbcType=VARCHAR},
+      </if>
+      <if test="proKeyw != null">
+        pro_keyw = #{proKeyw,jdbcType=VARCHAR},
+      </if>
+      <if test="proDif != null">
+        pro_dif = #{proDif,jdbcType=REAL},
+      </if>
+      <if test="proType != null">
+        pro_type = #{proType,jdbcType=VARCHAR},
+      </if>
+      <if test="chaNo != null">
+        cha_no = #{chaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="chaTitle != null">
+        cha_title = #{chaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="chaMpoint != null">
+        cha_mpoint = #{chaMpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="proDetail != null">
+        pro_detail = #{proDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.question_pool.entity.Problem">
+    update problem
+    set pro_ansno = #{proAnsno,jdbcType=VARCHAR},
+      pro_keyw = #{proKeyw,jdbcType=VARCHAR},
+      pro_dif = #{proDif,jdbcType=REAL},
+      pro_type = #{proType,jdbcType=VARCHAR},
+      cha_no = #{chaNo,jdbcType=VARCHAR},
+      cha_title = #{chaTitle,jdbcType=VARCHAR},
+      cha_mpoint = #{chaMpoint,jdbcType=VARCHAR},
+      pro_detail = #{proDetail,jdbcType=LONGVARCHAR}
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Problem">
+    update problem
+    set pro_ansno = #{proAnsno,jdbcType=VARCHAR},
+      pro_keyw = #{proKeyw,jdbcType=VARCHAR},
+      pro_dif = #{proDif,jdbcType=REAL},
+      pro_type = #{proType,jdbcType=VARCHAR},
+      cha_no = #{chaNo,jdbcType=VARCHAR},
+      cha_title = #{chaTitle,jdbcType=VARCHAR},
+      cha_mpoint = #{chaMpoint,jdbcType=VARCHAR}
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.question_pool.entity.Problem">
+    <constructor>
+      <idArg column="pro_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_ansno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_keyw" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_dif" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="pro_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_mpiont" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.question_pool.entity.Problem">
+    <constructor>
+      <idArg column="pro_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_ansno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_keyw" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_dif" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="pro_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cha_mpiont" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pro_detail" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pro_no, pro_ansno, pro_keyw, pro_dif, pro_type, cha_no, cha_title, cha_mpiont
+  </sql>
+  <sql id="Blob_Column_List">
+    pro_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from problem
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllProblems" resultType="com.example.question_pool.entity.Problem" />
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from problem
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.question_pool.entity.Problem">
+    insert into problem (pro_no, pro_ansno, pro_keyw, 
+      pro_dif, pro_type, cha_no, 
+      cha_title, cha_mpiont, pro_detail
+      )
+    values (#{proNo,jdbcType=INTEGER}, #{proAnsno,jdbcType=VARCHAR}, #{proKeyw,jdbcType=VARCHAR}, 
+      #{proDif,jdbcType=REAL}, #{proType,jdbcType=VARCHAR}, #{chaNo,jdbcType=VARCHAR}, 
+      #{chaTitle,jdbcType=VARCHAR}, #{chaMpiont,jdbcType=VARCHAR}, #{proDetail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.question_pool.entity.Problem">
+    insert into problem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="proNo != null">
+        pro_no,
+      </if>
+      <if test="proAnsno != null">
+        pro_ansno,
+      </if>
+      <if test="proKeyw != null">
+        pro_keyw,
+      </if>
+      <if test="proDif != null">
+        pro_dif,
+      </if>
+      <if test="proType != null">
+        pro_type,
+      </if>
+      <if test="chaNo != null">
+        cha_no,
+      </if>
+      <if test="chaTitle != null">
+        cha_title,
+      </if>
+      <if test="chaMpiont != null">
+        cha_mpiont,
+      </if>
+      <if test="proDetail != null">
+        pro_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="proNo != null">
+        #{proNo,jdbcType=INTEGER},
+      </if>
+      <if test="proAnsno != null">
+        #{proAnsno,jdbcType=VARCHAR},
+      </if>
+      <if test="proKeyw != null">
+        #{proKeyw,jdbcType=VARCHAR},
+      </if>
+      <if test="proDif != null">
+        #{proDif,jdbcType=REAL},
+      </if>
+      <if test="proType != null">
+        #{proType,jdbcType=VARCHAR},
+      </if>
+      <if test="chaNo != null">
+        #{chaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="chaTitle != null">
+        #{chaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="chaMpiont != null">
+        #{chaMpiont,jdbcType=VARCHAR},
+      </if>
+      <if test="proDetail != null">
+        #{proDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.question_pool.entity.Problem">
+    update problem
+    <set>
+      <if test="proAnsno != null">
+        pro_ansno = #{proAnsno,jdbcType=VARCHAR},
+      </if>
+      <if test="proKeyw != null">
+        pro_keyw = #{proKeyw,jdbcType=VARCHAR},
+      </if>
+      <if test="proDif != null">
+        pro_dif = #{proDif,jdbcType=REAL},
+      </if>
+      <if test="proType != null">
+        pro_type = #{proType,jdbcType=VARCHAR},
+      </if>
+      <if test="chaNo != null">
+        cha_no = #{chaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="chaTitle != null">
+        cha_title = #{chaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="chaMpiont != null">
+        cha_mpiont = #{chaMpiont,jdbcType=VARCHAR},
+      </if>
+      <if test="proDetail != null">
+        pro_detail = #{proDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.question_pool.entity.Problem">
+    update problem
+    set pro_ansno = #{proAnsno,jdbcType=VARCHAR},
+      pro_keyw = #{proKeyw,jdbcType=VARCHAR},
+      pro_dif = #{proDif,jdbcType=REAL},
+      pro_type = #{proType,jdbcType=VARCHAR},
+      cha_no = #{chaNo,jdbcType=VARCHAR},
+      cha_title = #{chaTitle,jdbcType=VARCHAR},
+      cha_mpiont = #{chaMpiont,jdbcType=VARCHAR},
+      pro_detail = #{proDetail,jdbcType=LONGVARCHAR}
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.question_pool.entity.Problem">
+    update problem
+    set pro_ansno = #{proAnsno,jdbcType=VARCHAR},
+      pro_keyw = #{proKeyw,jdbcType=VARCHAR},
+      pro_dif = #{proDif,jdbcType=REAL},
+      pro_type = #{proType,jdbcType=VARCHAR},
+      cha_no = #{chaNo,jdbcType=VARCHAR},
+      cha_title = #{chaTitle,jdbcType=VARCHAR},
+      cha_mpiont = #{chaMpiont,jdbcType=VARCHAR}
+    where pro_no = #{proNo,jdbcType=INTEGER}
+  </update>
+</mapper>
